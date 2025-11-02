@@ -1,11 +1,13 @@
 import Link from "next/link"
+import React, { ReactNode } from "react";
+
 
 export const metadata = {
   title: "Smart Integrated System",
   description: "AI-powered multi-module platform"
 }
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body style={{ fontFamily: "sans-serif", backgroundColor: "#f5f5f5" }}>
