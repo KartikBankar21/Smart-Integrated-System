@@ -74,52 +74,57 @@ export default function ChatbotPage() {
     scrollToBottom()
   }, [chat])
 
-  const sendMessage = async () => {
-    if (!message.trim() || isLoading) return
-    
-    const userMessage = message.trim()
-    setMessage("")
-    setChat(prev => [...prev, { sender: "user", text: userMessage }])
-    setIsLoading(true)
+const sendMessage = async () => {
+  if (!message.trim() || isLoading) return;
+  
+  const userMessage = message.trim();
+  setMessage("");
+  setChat(prev => [...prev, { sender: "user", text: userMessage }]);
+  setIsLoading(true);
 
-    try {
-      // Replace this URL with your actual backend endpoint
-      const response = await fetch("YOUR_BACKEND_URL/predict", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: userMessage,
-          session_id: sessionId
-        })
+  try {
+    const response = await fetch("https://smart-integrated-system.onrender.com/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: userMessage,
+        session_id: String(sessionId),
+        return_probabilities: false
       })
+    });
 
-      const data = await response.json()
-      
-      // Extract response from the JSON structure
-      const botReply = {
-        sender: "bot",
-        text: data.response || "I received your message!",
-        intent: data.predicted_intent,
-        slots: data.slots
-      }
+    const data = await response.json();
 
-      setChat(prev => [...prev, botReply])
-    } catch (error) {
-      // Fallback response for demo/testing
-      const botReply = {
-        sender: "bot",
-        text: `I received: "${userMessage}"`,
-        intent: "demo_intent",
-        slots: {}
-      }
-      setChat(prev => [...prev, botReply])
-    } finally {
-      setIsLoading(false)
-      inputRef.current?.focus()
+    const formattedSlots = {};
+    if (Array.isArray(data.slots)) {
+      data.slots.forEach(slot => {
+        formattedSlots[slot.token] = slot.label;
+      });
     }
+
+    const botReply = {
+      sender: "bot",
+      text: data.response || "✅ Backend running but did not return a response!",
+      intent: data.intent,
+      slots: formattedSlots
+    };
+
+    setChat(prev => [...prev, botReply]);
+  } catch (error) {
+    console.error("Chat error:", error);
+    setChat(prev => [...prev, {
+      sender: "bot",
+      text: "⚠️ Server error. Please try again!",
+      intent: "unknown_intent",
+      slots: {}
+    }]);
+  } finally {
+    setIsLoading(false);
+    inputRef.current?.focus();
   }
+};
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
