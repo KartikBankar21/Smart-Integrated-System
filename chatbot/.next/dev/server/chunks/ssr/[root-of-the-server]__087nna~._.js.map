@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/LENOVO/Desktop/smart-integrated-project/Smart-Integrated-System/chatbot/app/page.tsx"],"sourcesContent":["export default function HomePage() {\r\n  return (\r\n    <div>\r\n      <h1>Welcome to Smart Integrated System</h1>\r\n      <p>This platform integrates Chatbot, and Billing modules.</p>\r\n    </div>\r\n  )\r\n}\r\n"],"names":["HomePage"],"mappings":";;;;;;AAAe,SAASA;IACtB,qBACE,yPAAC;;0BACC,yPAAC;0BAAG;;;;;;0BACJ,yPAAC;0BAAE;;;;;;;;;;;;AAGT"}}]
+}
