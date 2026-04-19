@@ -24,7 +24,7 @@ Additionally, an **NLU-powered Chatbot** provides a conversational interface. Th
 
 The architecture consists of a **Billing Pipeline** and a **Chatbot Service**, as shown in the diagram. Images (shelf or invoice) are fed into the Vision and Document modules in parallel; both feed into the Billing Engine along with the Product DB. The Chatbot module interacts with the user separately, querying the same database for information or triggering billing actions as needed.
 
-![High Level Design of Project](/Smart-Integrated-System/screenshots/high_level_design.png)
+![High Level Design of Project](https://github.com/KartikBankar21/Smart-Integrated-System/blob/main/screenshots/high_level_design.png)
 
 ## Installation & Usage
 
@@ -60,15 +60,15 @@ The architecture consists of a **Billing Pipeline** and a **Chatbot Service**, a
 
 ## Screenshots
 
-![Dashboard view of the integrated billing and chatbot system](/Smart-Integrated-System/screenshots/home_dashboard.png)
+![Dashboard view of the integrated billing and chatbot system](https://github.com/KartikBankar21/Smart-Integrated-System/blob/main/screenshots/home_dashboard.png)
 
 *Home dashboard with links to billing history and chatbot.*
 
-![Invoice processing view](/Smart-Integrated-System/screenshots/invoice_extraction_viewer.png)
+![Invoice processing view](https://github.com/KartikBankar21/Smart-Integrated-System/blob/main/screenshots/invoice_extraction_viewer.png)
 
 *Invoice viewer showing extracted line items and totals (LayoutLMv3 output).*
 
-![Chatbot interaction](/Smart-Integrated-System/screenshots/chatbot_viewer.png)
+![Chatbot interaction](https://github.com/KartikBankar21/Smart-Integrated-System/blob/main/screenshots/chatbot_viewer.png)
 
 *Chatbot UI demonstrating multi-turn conversation with context tracking (CASA-NLU).*
 
